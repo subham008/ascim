@@ -4,13 +4,13 @@ use std::f64::consts::PI;
 const VALUE_CHARS: &str = " .-=+*x#$&X@";
 
 #[derive(Clone, Copy)]
-struct Hsv {
+pub struct Hsv {
     hue: f64,
     saturation: f64,
-    value: f64,
+    pub value: f64,
 }
 
-fn rgb_to_hsv(red: f64, green: f64, blue: f64) -> Hsv {
+pub fn rgb_to_hsv(red: f64, green: f64, blue: f64) -> Hsv {
     let max = red.max(green).max(blue);
     let min = red.min(green).min(blue);
 
@@ -41,7 +41,7 @@ fn rgb_to_hsv(red: f64, green: f64, blue: f64) -> Hsv {
     }
 }
 
-fn get_color_code(hsv: &Hsv) -> &'static str {
+pub fn get_color_code(hsv: &Hsv) -> &'static str {
     if hsv.saturation < 0.25 {
         return "\x1B[37m"; // WHITE
     }
@@ -61,13 +61,13 @@ fn get_color_code(hsv: &Hsv) -> &'static str {
     }
 }
 
-fn get_ascii_char(grayscale: f64) -> char {
+pub fn get_ascii_char(grayscale: f64) -> char {
     let index = (grayscale * (VALUE_CHARS.len() - 1) as f64) as usize;
     let index = index.min(VALUE_CHARS.len() - 1);
     VALUE_CHARS.chars().nth(index).unwrap()
 }
 
-fn get_sobel_angle_char(sobel_angle: f64) -> char {
+pub fn get_sobel_angle_char(sobel_angle: f64) -> char {
     if (22.5..=67.5).contains(&sobel_angle) || (-157.5..=-112.5).contains(&sobel_angle) {
         '\\'
     } else if (67.5..=112.5).contains(&sobel_angle) || (-112.5..=-67.5).contains(&sobel_angle) {
@@ -79,7 +79,7 @@ fn get_sobel_angle_char(sobel_angle: f64) -> char {
     }
 }
 
-fn get_sobel(grayscale: &[f64], width: usize, height: usize) -> (Vec<f64>, Vec<f64>) {
+pub fn get_sobel(grayscale: &[f64], width: usize, height: usize) -> (Vec<f64>, Vec<f64>) {
     let gx = [-1.0, 0.0, 1.0, -2.0, 0.0, 2.0, -1.0, 0.0, 1.0];
     let gy = [1.0, 2.0, 1.0, 0.0, 0.0, 0.0, -1.0, -2.0, -1.0];
 
