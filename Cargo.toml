@@ -1,0 +1,9 @@
+
+[package]
+edition = "2024"
+name = "ascim"
+version = "0.1.0"
+
+[dependencies]
+image = "0.25.8"
+term_size = "0.3.2"
