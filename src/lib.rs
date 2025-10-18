@@ -99,6 +99,38 @@ impl AsciImage {
         }
     }
 
+    /// Prints the ASCII art with ANSI colors to the console
+    ///
+    /// # Example
+    /// ```rust
+    /// use ascim::AsciImage;
+    ///
+    /// let args = Arguments {
+    ///     file_path: String::from("examples/image.jpg"),
+    ///     max_width: 80,
+    ///     max_height: 40,
+    ///     character_ratio: 2.0,
+    ///     edge_threshold: 1.0,
+    /// };
+    ///
+    /// let ascii = AsciImage::from_args(&args);
+    /// ascii.print_colored(); // Prints the colored ASCII art to console
+    /// ```
+    pub fn print(&self) {
+        for row in &self.converted_image {
+            for &(color, ch) in row {
+                // Convert RGB values (0.0-1.0) to 0-255 range
+                let r = (color.r * 255.0) as u8;
+                let g = (color.g * 255.0) as u8;
+                let b = (color.b * 255.0) as u8;
+
+                // Print colored character using ANSI escape codes
+                print!("\x1b[38;2;{};{};{}m{}\x1b[0m", r, g, b, ch);
+            }
+            println!();
+        }
+    }
+
     /// Converts the image data to ASCII characters based on the threshold and character ratio.
     fn convert_to_ascii(image_data: &ImageData, threshold: f64) -> Vec<Vec<(RGBColor, char)>> {
         let grayscale = make_grayscale(image_data);
