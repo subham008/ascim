@@ -114,7 +114,7 @@ impl AsciImage {
     /// };
     ///
     /// let ascii = AsciImage::from_args(&args);
-    /// ascii.print; // Prints the colored ASCII art to console
+    /// ascii.print(); // Prints the colored ASCII art to console
     /// ```
     pub fn print(&self) {
         for row in &self.converted_image {
