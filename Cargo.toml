@@ -1,7 +1,7 @@
 
 [package]
 authors = ["Subham Shaw , India <shaw.subham14.05.2002@gmail.com>"]
-categories = ["command-line-utilities", "image-processing"]
+categories = ["command-line-utilities", "graphics"]
 description = "Convert images to ASCII art (CLI + library)."
 documentation = "https://docs.rs/ascim"
 edition = "2021"
