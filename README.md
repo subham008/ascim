@@ -38,10 +38,7 @@ As Library
     
          let ascii = AsciImage::from_args(&args);
     
-         for row in ascii.converted_image.iter().take(5) {
-             let line: String = row.iter().map(|&(_color, ch)| ch).collect();
-             println!("{}", line);
-         }
+         ascii.print();
     
          Ok(())
      }
