@@ -1,11 +1,15 @@
 use crate::argparse::Args;
 use crate::image_processing::{ImageData, load_and_resize_image, make_grayscale};
 
-use crate::print_image::{
-    get_ascii_char, get_color_code, get_sobel, get_sobel_angle_char, rgb_to_hsv,
-};
+use crate::print_image::{get_ascii_char, get_sobel, get_sobel_angle_char, rgb_to_hsv};
 use std::f64::consts::PI;
 
+/// Represents an RGB color with floating point values between 0.0 and 1.0
+///
+/// # Fields
+/// * `r` - Red component (0.0 to 1.0)
+/// * `g` - Green component (0.0 to 1.0)
+/// * `b` - Blue component (0.0 to 1.0)
 #[derive(Debug, Clone, Copy)]
 pub struct RGBColor {
     pub r: f64,
@@ -13,6 +17,29 @@ pub struct RGBColor {
     pub b: f64,
 }
 
+///
+/// * `file_path` - Path to the input image file
+/// * `max_width` - Maximum width of the output ASCII art in characters
+/// * `max_height` - Maximum height of the output ASCII art in characters
+/// * `character_ratio` - Aspect ratio correction for terminal characters (typically 2.0)
+/// * `edge_threshold` - Threshold for edge detection (range: 0.0 to 4.0)
+///
+pub struct Arguments {
+    pub file_path: String,
+    pub max_width: usize,
+    pub max_height: usize,
+    pub character_ratio: f64,
+    pub edge_threshold: f64,
+}
+
+/// Represents an ASCII art image with color information
+///
+/// # Fields
+/// * `height` - Height of the image in characters
+/// * `width` - Width of the image in characters  
+/// * `threshold` - Edge detection threshold value
+/// * `character_ratio` - Aspect ratio correction for terminal characters
+/// * `converted_image` - 2D vector containing RGB colors and ASCII characters
 #[derive(Debug, Clone)]
 pub struct AsciImage {
     pub height: usize,
@@ -23,9 +50,35 @@ pub struct AsciImage {
 }
 
 impl AsciImage {
-    /// Creates an AsciImage from a given file path with specified options.
-    pub fn from_args(args: &Args) -> Self {
-        let img_data = load_and_resize_image(&args).expect("Failed to load image");
+    /// Creates a new AsciImage instance from command line arguments
+    ///
+    /// # Arguments
+    /// * `args` - Command line arguments containing image path and conversion options
+    ///
+    /// # Returns
+    /// * `AsciImage` - A new AsciImage instance with the converted image data
+    ///
+    ///  # Example
+    /// ```rust
+    /// let args = Arguments {
+    ///     file_path: String::from("path/to/image.jpg"),
+    ///     max_width: 80,
+    ///     max_height: 40,
+    ///     character_ratio: 2.0,
+    ///     edge_threshold: 1.0,
+    /// };
+    ///
+    /// # Panics
+    /// * If the image fails to load or process
+    pub fn from_args(args: &Arguments) -> Self {
+        let img_data = load_and_resize_image(&Args {
+            file_path: args.file_path.clone(),
+            max_width: args.max_width,
+            max_height: args.max_height,
+            character_ratio: args.character_ratio,
+            edge_threshold: args.edge_threshold,
+        })
+        .expect("Failed to load image");
         let threshold = args.edge_threshold;
         let character_ratio = args.character_ratio;
         let converted_image = Self::convert_to_ascii(&img_data, threshold);
