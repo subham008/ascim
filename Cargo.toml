@@ -1,8 +1,17 @@
 
 [package]
+authors = ["Subham Shaw"]
+categories = ["command-line-utilities", "image-processing"]
+description = "Convert images to ASCII art (CLI + library)."
+documentation = "https://docs.rs/ascim"
 edition = "2024"
+keywords = ["ascii", "ascii-art", "image", "image-processing", "cli"]
+license = "MIT OR Apache-2.0"
+license-file = "LICENSE"
 name = "ascim"
-version = "0.1.0"
+readme = "README.md"
+repository = "https://github.com/subham008/ascim"
+version = "1.0.0"
 
 [dependencies]
 image = "0.25.8"

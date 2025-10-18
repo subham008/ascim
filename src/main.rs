@@ -1,4 +1,3 @@
-mod AsciImage;
 mod argparse;
 mod image_processing;
 mod print_image;

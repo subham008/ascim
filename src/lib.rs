@@ -1,7 +1,14 @@
-use crate::argparse::Args;
-use crate::image_processing::{ImageData, load_and_resize_image, make_grayscale};
+//! Crate-level documentation pulled from README
+#![doc = include_str!("../README.md")]
 
-use crate::print_image::{get_ascii_char, get_sobel, get_sobel_angle_char, rgb_to_hsv};
+mod argparse;
+mod image_processing;
+mod print_image;
+
+use argparse::Args;
+use image_processing::{ImageData, load_and_resize_image, make_grayscale};
+
+use print_image::{get_ascii_char, get_sobel, get_sobel_angle_char, rgb_to_hsv};
 use std::f64::consts::PI;
 
 /// Represents an RGB color with floating point values between 0.0 and 1.0
