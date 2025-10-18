@@ -1,3 +1,9 @@
+<div align="center">
+  <img src="images/flower_vase.jpg" width="150" alt="Flower Vase"/>
+  <img src="images/flower_vase_ascii.png" width="155" alt="Ascii image"/>
+</div>
+
+
 # ascim
 
 A small Rust command-line tool and library for converting images to ASCII art. Useful for quick previews, terminal wallpapers, demos, or embedding simple text-based representations of images.
@@ -23,14 +29,6 @@ ascim convert image.png --width 80
 ascim convert image.png --width 120 --color > image.asc
 ```
 
-Library example:
-```rust
-use ascim::{Config, convert_from_path};
-
-let cfg = Config::builder().width(100).color(true).build();
-let ascii = convert_from_path("image.png", &cfg)?;
-println!("{}", ascii);
-```
 
 ## Configuration
 Common options:
