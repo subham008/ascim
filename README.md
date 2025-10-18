@@ -23,10 +23,8 @@ cargo install ascim
 Basic CLI usage:
 ```bash
 # convert image.png to ASCII on stdout
-ascim convert image.png --width 80
+ascim  image.png 
 
-# save colored output to a file
-ascim convert image.png --width 120 --color > image.asc
 ```
 
 
