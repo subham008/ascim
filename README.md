@@ -3,7 +3,17 @@
   <img src="images/flower_vase_ascii.png" width="260" alt="Ascii image"/>
 </div>
 
-
+<p align="center">
+  <a href="https://crates.io/crates/ascim">
+    <img src="https://img.shields.io/crates/d/ascim.svg" alt="Crates.io downloads">
+  </a>
+  <a href="https://crates.io/crates/pealn">
+    <img src="https://img.shields.io/crates/v/ascim.svg" alt="Crates.io version">
+  </a>
+  <a href="https://crates.io/crates/pealn">
+    <img src="https://img.shields.io/crates/l/ascim.svg" alt="Crates.io license">
+  </a>
+</p>
 
 # ascim
 
@@ -19,14 +29,14 @@ cargo install ascim
 Basic CLI usage:
 ```bash
 # print image.png to ASCII on stdout
-ascim  image.png 
+ascim  image.png
 
 ```
 
 As Library
 ```rust
   use ascim::{AsciImage, Arguments};
-    
+
      fn main() -> Result<(), Box<dyn std::error::Error>> {
          let args = Arguments {
              file_path: String::from("examples/image.png"),
@@ -35,11 +45,11 @@ As Library
             character_ratio: 2.0,
             edge_threshold: 1.0,
          };
-    
+
          let ascii = AsciImage::from_args(&args);
-    
+
          ascii.print();
-    
+
          Ok(())
      }
 ```
