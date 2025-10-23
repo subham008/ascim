@@ -6,7 +6,7 @@ mod image_processing;
 mod print_image;
 
 use argparse::Args;
-use image_processing::{ImageData, load_and_resize_image, make_grayscale};
+use image_processing::{load_and_resize_image, make_grayscale, ImageData};
 
 use print_image::{get_ascii_char, get_sobel, get_sobel_angle_char, rgb_to_hsv};
 use std::f64::consts::PI;
@@ -43,7 +43,7 @@ pub struct Arguments {
 ///
 /// # Fields
 /// * `height` - Height of the image in characters
-/// * `width` - Width of the image in characters  
+/// * `width` - Width of the image in characters
 /// * `threshold` - Edge detection threshold value
 /// * `character_ratio` - Aspect ratio correction for terminal characters
 /// * `converted_image` - 2D vector containing RGB colors and ASCII characters
